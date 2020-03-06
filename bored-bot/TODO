@@ -8,17 +8,17 @@
     ☐ Tests
   ☐ DuckHunt
     ☐ Tests
-  ✘ Dungeon @cancelled(19-09-30 23:11)
+  ☐ Dungeon
   ☐ Echos
-    ✘ Tests @cancelled(19-10-02 15:44)
+    ☐ Tests
   ☐ Events
     ☐ Tests
   ☐ Fools
     ☐ Tests
   ☐ Lotto
     ☐ Tests
-  ✘ Music @cancelled(19-09-30 23:11)
-  ✘ Olympics @cancelled(19-09-30 23:11)
+  ☐ Music
+  ☐ Olympics
   ☐ Outbreak
     ☐ Tests
   ☐ Poll
@@ -27,9 +27,9 @@
     ☐ Tests
   ☐ RoyRoyBucks
     ☐ Tests
-  ✘ Stats @cancelled(19-09-30 23:11)
-  ✔ Stock Chart @done(19-09-30 23:12)
-    ✔ Tests @done(19-10-01 22:39)
+  ☐ Stats
+  ☐ Stock Chart
+    ☐ Tests
   ☐ Strava
     ☐ Tests
   ☐ Subscribe
@@ -42,21 +42,5 @@
     ☐ Tests
   ☐ Upvotes
     ☐ Tests
-  ✔ Urban Dictionary @done(19-10-02 15:37)
-    ✔ Tests @done(19-10-02 15:37)
-
-☐ Features
-  ✔ Command Format @done(19-09-30 23:14)
-  ✔ Channel Definition @done(19-09-30 23:14)
-  ✔ Emojis Definition @done(19-09-30 23:14)
-  ✔ Add Reaction @done(19-09-30 23:14)
-  ☐ Auto restrict channel
-  ✔ Command Config Options @done(19-10-01 00:21)
-  ✔ "Help" config @done(19-10-02 15:46)
-  ☐ Easy UI (with React!)
-  ☐ TypeORM support with mongodb
-  ✔ Add/Remove Roles @done(19-10-04 16:40)
-  ☐ Add way to get initiator in help text
-    Talking about the ! part of the command
-  ☐ Multiple commands under one Action
-    Need to also share commands between
+  ☐ Urban Dictionary
+    ☐ Tests
