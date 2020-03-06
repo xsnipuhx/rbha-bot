@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "outDir": "dist/",
+    "target": "es6",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "checkJs": true,
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "paths": {
+      "@*": ["./src*"]
+    }
+  },
+  "include": [
+    "src/**/*", 
+    "../bastion/src/utils/ts-mongoose/ts-mongoose"
+  ],
+  "exclude": [
+    "src/**/node_modules/**/*"
+  ],
+  "types": ["node"]
+}
