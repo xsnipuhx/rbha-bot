@@ -1,6 +1,5 @@
 import Debug from 'debug'
 import User from './User'
-import { createRandomToken } from '../services/AuthService'
 // todo: from 'bastion-mongodb'
 import mongodb from '../../../plugins/bastion-mongodb'
 
@@ -36,12 +35,29 @@ export default class UserDao {
    */
   public async findByDiscordId(discordId: string): Promise<User|null> {
     debug(`Finding user with id ${discordId}`)
-
+    
     const result = await getCollection()
       .findOne({ discordId })
   
     if (!result) return null
 
+    return User.from(result)
+  }
+
+
+  /**
+   * Find a user by their strava ID
+   * 
+   * @param discordId User ID
+   */
+  public async findByStravaId(stravaId: string): Promise<User|null> {
+    debug(`Finding user with strava id ${stravaId}`)
+
+    const result = await getCollection()
+      .findOne({ stravaId })
+  
+    if (!result) return null
+    
     return User.from(result)
   }
 

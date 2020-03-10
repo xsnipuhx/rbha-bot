@@ -10,6 +10,8 @@ const router = express.Router()
 router.get("/auth", controllers.redirectStravaAuth)
 router.post("/auth/accept", controllers.acceptStravaCode)
 
+router.post("/webhook", controllers.postActivity)
+
 // Serve frontend content
 router.use("/", express.static(PUBLIC_PATH))
 

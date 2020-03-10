@@ -4,7 +4,8 @@ export default {
 
     channels: {
       general: "530586255197732876",
-      admin: "530597070558461972"
+      admin: "530597070558461972",
+      strava: "531745959449853997"
     },
 
     emojis: {

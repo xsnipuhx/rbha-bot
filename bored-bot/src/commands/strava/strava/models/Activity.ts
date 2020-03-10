@@ -1,4 +1,5 @@
-import applyJson from '../../utils/applyJson'
+import Meters from '../../utils/Meters'
+import Seconds from '../../utils/Seconds'
 
 export default class Activity {
   /** Activity ID */
@@ -9,11 +10,11 @@ export default class Activity {
     id: string;
   }
 
-  distance: number;
+  distance: Meters;
 
-  moving_time: number;
+  moving_time: Seconds;
 
-  elapsed_time: number;
+  elapsed_time: Seconds;
 
   total_elevation_gain: number;
 
@@ -41,16 +42,28 @@ export default class Activity {
   /** Is this activity set to private */
   private: boolean;
 
-  /** */
+  /** Avereage speed, in meters/second */
   average_speed: number;
 
-  /** */
+  /** Max speed, in meters/second*/
   max_speed: number;
 
   available_zones: Zones[];
 
-  constructor(res: object) {
-    applyJson(this, res)
+  /** Device it was recorded on */
+  device_name: string;
+
+  constructor(res: any) {
+    Object.assign(this, res)
+
+    this.moving_time = new Seconds(res.moving_time)
+    this.elapsed_time = new Seconds(res.elapsed_time)
+    this.distance = new Meters(res.distance)
+  }
+
+  /** Converts average_speed to seconds/mile */
+  get average_pace() {
+    return new Seconds(1609.344 / this.average_speed)
   }
 }
 

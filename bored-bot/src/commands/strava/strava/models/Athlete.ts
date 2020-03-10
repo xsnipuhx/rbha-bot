@@ -1,5 +1,3 @@
-import applyJson from '../../utils/applyJson'
-
 export default class Athlete {
   /** Strava ID */
   id: string;
@@ -11,6 +9,6 @@ export default class Athlete {
   profile: string;
 
   constructor(res: object) {
-    applyJson(this, res)
+    Object.assign(this, res)
   }
 }

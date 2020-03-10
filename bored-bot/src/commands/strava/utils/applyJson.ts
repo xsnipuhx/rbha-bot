@@ -6,7 +6,8 @@
  */
 export default function applyJson(self: any, json: object) {
   for (let key in json) {
-    if (self.hasOwnProperty[key]) {
+    console.log("self", self.hasOwnProperty[key])
+    if (self.members.includes(key)) {
       self[key] = json[key];
     }
   }

@@ -1,8 +1,10 @@
 import * as Discord from 'discord.js'
-import Router from './Router'
+
+import {BastionPlugin, PluginsManager} from './Plugins'
 import Resolver, {Resolvable} from './Resolver'
+
 import Debug from 'debug'
-import {PluginsManager,BastionPlugin} from './Plugins'
+import Router from './Router'
 
 const debug = Debug("bastion:core")
 
@@ -58,6 +60,9 @@ export default class Bastion {
     plugins.forEach(this.pluginsManager.addPlugin)
   }
 
+  /**
+   * Get the instigator option to start a command
+   */
   public get instigator() {
     return this.options.instigator
   }
@@ -68,6 +73,14 @@ export default class Bastion {
   public async connect() {
     await this.client.login(this.options.token)
     this.pluginsManager.initialize()
+  }
+
+  /**
+   * Shorthand to get a discord channel by it's ID
+   * @param id The id of the channel
+   */
+  public channel(id: string) {
+    return this.client.channels.get(id) as Discord.TextChannel
   }
 }
 
