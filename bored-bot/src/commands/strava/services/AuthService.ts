@@ -17,8 +17,11 @@ const urlRoot = () => config.hostname + config.basePath
  */
 export const getConnectUrl = async (discordId: string) => {
   debug(`authorizing new user`)
-  // TODO: This should refresh an auth token as well
-  const user = await userDao.findOrCreate(discordId)
+  let user = await userDao.findByDiscordId(discordId)
+
+  if (!user) {
+    user = await userDao.createNewUser(discordId, generateToken())
+  }
   const tokenParams = querystring.stringify({
     token: discordId + "." + user.authToken
   })
@@ -72,5 +75,5 @@ export const acceptToken = async (authString: string, code: string) => {
 /**
  * Creates a random 32 character string
  */
-export const createRandomToken = () => 
+export const generateToken = () => 
   [...Array(32)].map(i=>(~~(Math.random()*36)).toString(36)).join('')

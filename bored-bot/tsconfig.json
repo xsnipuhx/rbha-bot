@@ -16,8 +16,7 @@
     }
   },
   "include": [
-    "src/**/*", 
-    "../bastion/src/utils/ts-mongoose/ts-mongoose"
+    "src/**/*"
   ],
   "exclude": [
     "src/**/node_modules/**/*"

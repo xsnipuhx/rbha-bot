@@ -3,7 +3,6 @@ import * as express from 'express'
 import Bastion, {BastionPlugin} from 'bastion'
 
 import Debug from 'Debug'
-import bodyParser from 'body-parser'
 
 const debug = Debug('bastion-plugin:express')
 

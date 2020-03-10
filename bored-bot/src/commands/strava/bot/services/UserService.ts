@@ -1,5 +1,4 @@
-import Bastion, {ResolveHandler} from 'bastion'
-
+import {ResolveHandler} from 'bastion'
 import UserDao from '../../db/UserDao'
 
 const userDao = new UserDao()

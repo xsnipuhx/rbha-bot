@@ -1,3 +1,5 @@
+import applyJson from '../../utils/applyJson'
+
 export default class Activity {
   /** Activity ID */
   id: string;
@@ -48,7 +50,7 @@ export default class Activity {
   available_zones: Zones[];
 
   constructor(res: object) {
-    Object.assign(this, res)
+    applyJson(this, res)
   }
 }
 

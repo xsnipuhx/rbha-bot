@@ -1,5 +1,4 @@
 import Debug from 'debug'
-import {MissingResourceError} from '../utils/errors'
 import User from './User'
 import { createRandomToken } from '../services/AuthService'
 // todo: from 'bastion-mongodb'
@@ -11,32 +10,17 @@ const debug = Debug('strava:user.dao')
 export default class UserDao {
 
   /**
-   * Find a user's profile information, if doesn't exist then initializes one with a random url token
-   * 
-   * @param discordId User ID from discord
-   */
-  public async findOrCreate(discordId: string): Promise<User> {
-    const user = await this.findByDiscordId(discordId)
-
-    if (user) {
-      debug(`Got user %O`, user)
-      return user
-    } else {
-      return this.createNewUser(discordId)
-    }
-  }
-
-  /**
    * Creates a new user and initiatess a new authToken
    * 
    * @param discordId User ID from discord
+   * @param authToken Generate a random auth token
    */
-  public async createNewUser(discordId: string) {
+  public async createNewUser(discordId: string, authToken: string) {
     debug(`Created new user ${discordId}`)
 
-    const user = User.from({
+    const user = User.from({ 
       discordId,
-      authToken: createRandomToken()
+      authToken 
     });
     
     await getCollection()
