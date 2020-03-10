@@ -9,6 +9,7 @@
     "baseUrl": ".",
     "skipLibCheck": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata":true,
     "strictNullChecks": true,
     "paths": {
       "@*": ["./src*"]

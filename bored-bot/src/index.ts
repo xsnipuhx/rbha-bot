@@ -1,12 +1,7 @@
-import * as dotenv from 'dotenv'
-dotenv.config()
-
-import wretch from 'wretch'
-wretch().polyfills({
-  fetch: require("node-fetch"),
-  FormData: require("form-data"),
-  URLSearchParams: require("url").URLSearchParams
-})
+// Initialize some configs
+import "./lib/dotenv"
+import "./lib/wretch"
+import "./lib/yup"
 
 import Bastion from 'bastion'
 import BastionMongoDB from './plugins/bastion-mongodb'

@@ -18,7 +18,7 @@ export class PluginsManager {
   addPlugin = (plugin: BastionPlugin) => {
     if (!plugin.name) throw `Plugin must have a unique name`;
     if (this.plugins.has(plugin.name)) {
-      debug(`⚠️ Plugin ${plugin.name} conflicts with another plugin`.red)
+      debug(`⚠️ Plugin ${plugin.name} conflicts with another plugin`.yellow)
     }
 
     debug(`Adding plugin ${plugin.name}`)

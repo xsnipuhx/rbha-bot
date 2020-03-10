@@ -25,10 +25,7 @@ export default class BastionMongoDB extends BastionPlugin {
   constructor(config: MongoDBConfig) {
     super();
     this.config = config;
-    console.log("setting instance")
     BastionMongoDB.instance = this;
-
-    console.log(BastionMongoDB.instance)
   }
 
   private cacheDb = (client: MongoClient) => {
