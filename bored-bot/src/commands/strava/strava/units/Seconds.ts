@@ -1,7 +1,19 @@
 export default class Seconds {
   constructor(private seconds: number) {}
 
-  hhmmss() {
+  valueOf() {
+    return this.seconds
+  }
+
+  toPace() {
+    return this.toTime() + '/mi'
+  }
+
+  toString() {
+    return this.toTime()
+  }
+
+  toTime() {
     let secs = this.seconds
     let minutes = Math.floor(secs / 60);
     secs = Math.floor(secs%60);
@@ -15,13 +27,5 @@ export default class Seconds {
     }
     result += ":"+secs.toString().padStart(2, '0')
     return result;
-  }
-
-  valueOf() {
-    return this.seconds
-  }
-
-  toString() {
-    return this.seconds
   }
 }

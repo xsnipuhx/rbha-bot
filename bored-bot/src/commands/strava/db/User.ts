@@ -1,40 +1,18 @@
-import {InferType, number, object, string} from 'yup'
-import { JsonProperty, Serializable } from 'typescript-json-serializer';
+import {IsDefined, ValidateNested, validateSync} from 'class-validator'
+import {JsonProperty, Serializable, deserialize, serialize} from 'typescript-json-serializer';
 
 import Debug from 'debug'
 import Profile from './Profile'
 import mongodb from '../../../plugins/bastion-mongodb'
-import validatedModel from '../utils/validatedModel'
 
 const debug = Debug('strava:db-user')
 const getCollection = mongodb.collection('fit-users')
 
-// Model Schema
-const userSchema = object({
-  discordId: string()
-    .required(),
-
-  authToken: string()
-    .notRequired(),
-
-  stravaId: number()
-    .notRequired(),
-
-  refreshToken: string()
-    .notRequired()
-    .default(""),
-
-  profile: object()
-    .model(Profile)
-    .notRequired()
-})
-
-const Validator = validatedModel(userSchema)
-
 @Serializable()
-class UserModel extends Validator implements InferType<typeof userSchema> {
+export default class User {
   /** Discord ID for this user */
   @JsonProperty()
+  @IsDefined()
   discordId: string;
 
   /** Strava profile ID */
@@ -51,25 +29,26 @@ class UserModel extends Validator implements InferType<typeof userSchema> {
 
   /** Profile status such as points, levels, etc */
   @JsonProperty()
+  @ValidateNested()
   profile: Profile = new Profile();
-}
 
-export default class User extends UserModel {
   /**
    * Save the user to the DB
    * 
    */
   
   public async save(): Promise<User> {
-    debug(`Saving user ${this.discordId} %O`, this.json())
-    
-    this.validate()
+    const json = serialize(this)
+    debug(`Saving user ${this.discordId} %O`, json)
+
+    const errors = validateSync(this);
+
+    if (errors.length) {
+      throw new Error('Could not validate model before saving')
+    }
     
     return getCollection()
-      .replaceOne(
-        { discordId: this.discordId },
-        this.json()
-      )
+      .replaceOne({discordId: this.discordId}, json)
       .then(() => this)
   }
 
@@ -83,10 +62,11 @@ export default class User extends UserModel {
   public static async create(discordId: string) {
     debug(`Create new user ${discordId}`)
 
-    const user = User.from({ discordId });
+    const user = new User()
+    user.discordId = discordId
     
     return getCollection()
-      .insertOne(user.json())
+      .insertOne(serialize(user))
       .then(() => user)
   }  
 
@@ -97,13 +77,13 @@ export default class User extends UserModel {
    */
 
   public static async findById(query: {discordId?: string, stravaId?: string}): Promise<User> {
-    debug(`Finding user with id ${query}`);
+    debug(`Finding user with id %O`, query);
     
     return getCollection()
       .findOne(query)
       .then( result => {
-        if (result) return User.from(result)
-        else throw new Error(`No user found with that ID: ${query}`)
+        if (result) return deserialize(result, User);
+        else throw new Error(`No user found with that ID: ${query}`);
       })
   }
 }

@@ -18,3 +18,8 @@ export async function findOrCreateUser(discordId: string) {
     return User.create(discordId)
   }
 }
+
+export async function findUser(query: { stravaId?: string, discordId?: string }) {
+  debug(`find user %O`, query)
+  return User.findById(query)
+}

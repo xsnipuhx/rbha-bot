@@ -62,8 +62,13 @@ export default class Activity {
   }
 
   /** Converts average_speed to seconds/mile */
-  get average_pace() {
+  get averagePace() {
+    // 1 meter per second = 1,609.344 seconds per mile
     return new Seconds(1609.344 / this.average_speed)
+  }
+
+  get averageHeartrate() {
+    return Math.round(this.average_heartrate)
   }
 }
 

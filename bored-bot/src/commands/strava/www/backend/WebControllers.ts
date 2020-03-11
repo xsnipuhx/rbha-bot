@@ -1,12 +1,13 @@
 import * as AuthService from '../../services/auth-service'
+import * as StravaService from '../../services/strava-service'
 import * as express from 'express'
 
 import Bastion, {Embed} from 'bastion'
 
 import Debug from 'debug'
-import {Unauthorized} from './Errors'
+import activityEmbed from '../../bot/embeds/activity-embed'
 import config from '../../config'
-import {getActivityDetails} from '../../strava/activityEmbed'
+import {findUser} from '../../services/user-service'
 
 const debug = Debug("strava:webController")
 
@@ -29,9 +30,10 @@ export const acceptStravaCode: express.RequestHandler = async function(req, res,
     await AuthService.acceptToken(discordId, code)
     
     res.json({ accepted: true })
-  } catch (e) {
-    console.log(e)
-    Unauthorized(res, "Unable to authenticate Token (Token may have been expired)");
+  } catch (err) {
+    debug('failed to authorize: %O', err)
+    res.status(401)
+      .json({ error: "Unable to authenticate Token (Token may have been expired)" })
   }
 }
 
@@ -59,56 +61,36 @@ export const redirectStravaAuth: express.RequestHandler = async function(req, re
  */
 
 export const postActivity: express.RequestHandler = async function(req, res) {
+  debug('postActivity(%O)', req.body)
+
   const bastion = req["bastion"] as Bastion
   const { owner_id, object_id, aspect_type } = req.body
 
   // We only care for new events
   if (aspect_type !== "create") return;
 
-  const {user, activity, athlete} = await getActivityDetails(owner_id, object_id)
-  const discordUser = await bastion.client.fetchUser(user.discordId)
+  debug('fetching data')
+  const user = await findUser({ stravaId: owner_id })
+  debug('user? %O', user.json())
+  const [athlete, activity, discordUser] = await Promise.all([
+    StravaService.getProfile(user),
+    StravaService.getActivityDetails(user, object_id),
+    bastion.client.fetchUser(user.discordId)
+  ])
 
-  // todo: Move to an embed class or something in the bot folder
-  const embed = new Embed()
-    .setColor("fc4c02")
-    .setAuthor(
-      discordUser.username + " posted a run", 
-      athlete.profile
-    )
-    .setTitle(activity.name)
-    .setDescription(activity.description)
-    // .setThumbnail(athlete.profile)
-    .addField(
-      "Distance", 
-      activity.distance.toMiles().toFixed(2) + "mi", 
-      true
-    )
-    .addField(
-      "Time", 
-      activity.moving_time.hhmmss(), 
-      true
-    )
-    .addField(
-      "Pace", 
-      activity.average_pace.hhmmss() + '/mi', 
-      true
-    )
-    .addField(
-      "Heart Rate", 
-      Math.floor(activity.average_heartrate), 
-      true
-    )
-    .addField(
-      "Points", 
-      `\`♥\` +4.5 \`♥♥\` +6.2`, 
-      true
-    )
-    .setFooter(`From ${activity.device_name}`)
+  debug('creating embed')
+  const embed = activityEmbed(
+    discordUser.username, 
+    athlete.profile, 
+    activity
+  );
 
+  debug('sending to channel')
   bastion
     .channel(config.postActivityChannel)
     .send(embed)
   
+  debug('👍')
   res.send('👍')
 }
 
