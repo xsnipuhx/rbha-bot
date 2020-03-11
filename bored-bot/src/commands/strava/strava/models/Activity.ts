@@ -1,5 +1,5 @@
-import Meters from '../../utils/Meters'
-import Seconds from '../../utils/Seconds'
+import Meters from '../units/Meters'
+import Seconds from '../units/Seconds'
 
 export default class Activity {
   /** Activity ID */

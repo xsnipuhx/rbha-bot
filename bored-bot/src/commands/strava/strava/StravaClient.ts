@@ -1,26 +1,31 @@
-import { ResponseChain, Wretcher } from 'wretch';
-import {StravaRequester, request} from './request';
+import wretch, { Wretcher } from 'wretch';
 
 import Activity from './models/Activity';
 import Athlete from './models/Athlete';
 import Debug from 'debug';
 import User from "../db/User";
 import Zones from './models/Zones';
+import {authTokenMiddleware} from './api/authTokenMiddleware';
 
 const debug = Debug(`strava:client`)
 
+/**
+ * Interaction with the strava Rest API
+ */
 export default class StravaClient {
-  private user: User;
+  /** Wretch instance ready with auth */
   private api: Wretcher;
 
   constructor(user: User) {
-    this.user = user;
-    this.api = request(user)
+    this.api = wretch()
+      .middlewares([ authTokenMiddleware({ user }) ])
+      .url('https://www.strava.com/api/v3/')
   }
 
   /** 
    * Get basic Athlete information 
    **/
+
   getProfile() {
     debug('getProfile()')
     
@@ -31,8 +36,9 @@ export default class StravaClient {
   }
 
   /**
-   * Get a breakdown of HR zones
+   * Get a breakdown of HR zones for a user
    */
+
   getHRZones() {
     debug('getAthleteHRZones()')
     
@@ -42,6 +48,12 @@ export default class StravaClient {
       .json(res => new Zones(res))
   }
 
+  /**
+   * Get a specific activity by ID
+   * 
+   * @param activityId 
+   */
+
   getActivity(activityId: string) {
     debug('getActivity()')
     
@@ -49,8 +61,14 @@ export default class StravaClient {
       .url(`/activities/${activityId}`)
       .get()
       .json(res => new Activity(res))    
-  }
+  } 
 
+  /** 
+   * Get heartrate data from an activity
+   * 
+   * @param activityId
+  */
+ 
   getActivityHeartrate(activityId: string) {
     debug('getActivityHeartrate()')
     

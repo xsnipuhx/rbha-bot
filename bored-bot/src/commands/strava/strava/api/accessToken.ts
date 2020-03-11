@@ -1,8 +1,8 @@
 import * as NodeCache from 'node-cache';
 
 import Debug from 'debug';
-import User from "../db/User";
-import config from '../config'
+import User from "../../db/User";
+import config from '../../config'
 import wretch from 'wretch';
 
 const debug = Debug('strava:accessToken')
@@ -13,6 +13,7 @@ const clientConfig = () => ({
   client_secret: config.client_secret
 })
 
+// Store access tokens in a cache for a short time for subsequent requests
 const tokenCache = new NodeCache({
   // 20 minutes
   stdTTL: 60 * 20
@@ -22,8 +23,9 @@ const tokenCache = new NodeCache({
  * Get access token - will try to pull from cache first, if not then fetches from the oauth api
  * 
  * @param user User object from database
- * @param force Force fetching a new token
+ * @param force? Force fetching a new token
  */
+
 export async function getAccessToken(user: User, force = false) {
   const token = tokenCache.get<string>(user.discordId)
   if (token && !force) return token
@@ -39,35 +41,37 @@ export async function getAccessToken(user: User, force = false) {
 }
 
 /**
- * Gets the users latest access token. Will also cache it for future requests
+ * Fetch an access token for the first time
  * 
- * @param refreshCode Refresh code from OAuth grant flow
+ * @param refreshToken Refresh code from OAuth grant flow
  */
-async function refreshAccessToken(refreshToken: string) {
-  debug(`refreshing access token`)
-  
-  return tokenApi
-    .post({
-      ...(clientConfig()),
-      refresh_token: refreshToken,
-      grant_type: "refresh_token"
-    })
-    .json<TokenResponse>()
-}
 
-/**
- * Gets the users latest access token. Will also cache it for future requests
- * 
- * @param refreshCode Refresh code from OAuth grant flow
- */
 export async function fetchAccessToken(refreshToken: string) {
   debug(`fetching new access token`)
   
   return tokenApi
     .post({
       ...(clientConfig()),
-      code: refreshToken,
-      grant_type: "authorization_code"
+      code        : refreshToken,
+      grant_type  : "authorization_code"
+    })
+    .json<TokenResponse>()
+}
+
+/**
+ * Gain a user's new access token for strava requests
+ * 
+ * @param refreshToken Refresh code from OAuth grant flow
+ */
+
+async function refreshAccessToken(refreshToken: string) {
+  debug(`refreshing access token`)
+  
+  return tokenApi
+    .post({
+      ...(clientConfig()),
+      refresh_token : refreshToken,
+      grant_type    : "refresh_token"
     })
     .json<TokenResponse>()
 }

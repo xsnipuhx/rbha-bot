@@ -1,10 +1,14 @@
 import {ResolveHandler} from 'bastion'
-import UserDao from '../../db/UserDao'
+import User from '../../db/User'
 
-const userDao = new UserDao()
+/**
+ * Fetches DB user
+ * 
+ * @prop user
+ */
 
 export const withUserProp: ResolveHandler = async ({props, reply, user, command, next}) => {
-  const stravaUser = await userDao.findByDiscordId(user.id);
+  const stravaUser = await User.findById({ discordId: user.id });
 
   if (!stravaUser) {
     return reply(`User ${user.nickname} hasn't authorized with the bot yet! Use \`!${command} auth\` to get started`)

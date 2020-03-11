@@ -3,7 +3,12 @@ import { JsonProperty, Serializable, deserialize, serialize } from 'typescript-j
 
 /** 
  * This creates a class you can extend from, that applies JSON from the constructor as props and a validate() function
+ * 
+ * @example
+ *   const Validated = validateModel(schema)
+ *   class Model extends Validated {}
  **/
+
 export default <T extends ObjectSchema<object>>(schema: T) => class Validator {
 
   /**

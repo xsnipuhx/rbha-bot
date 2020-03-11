@@ -1,9 +1,11 @@
 import {ResolveHandler, use} from 'bastion'
 
-import {getConnectUrl} from '../../services/AuthService'
+import {findOrCreateUser} from '../../services/user-service'
+import {getConnectUrl} from '../../services/auth-service'
 
 const sendConnectUrl: ResolveHandler = async ({reply, user, props}) => {
-  const authUrl = await getConnectUrl(user.id)
+  const dbUser = await findOrCreateUser(user.id)
+  const authUrl = await getConnectUrl(dbUser)
 
   return Promise.all([
     user.send(`

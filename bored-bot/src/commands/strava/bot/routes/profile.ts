@@ -2,7 +2,7 @@ import {ResolveHandler, use} from 'bastion'
 
 import StravaClient from '../../strava/StravaClient'
 import User from '../../db/User'
-import {withUserProp} from '../services/UserService'
+import {withUserProp} from '../middlewares/user-middleware'
 
 const printProfile: ResolveHandler = async ({reply, props}) => {
   const user = props.get<User>("user")
