@@ -1,5 +1,5 @@
 import Debug from 'debug'
-import User from '../db/User'
+import User from "../db/User";
 
 const debug = Debug('strava:user-service')
 

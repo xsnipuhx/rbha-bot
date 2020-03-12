@@ -1,9 +1,10 @@
 import * as Discord from 'discord.js'
+
 import Bastion from './Bastion';
 
 export default class Context {
   /** The user who sent the message */
-  public user: Discord.GuildMember;
+  public member: Discord.GuildMember;
 
   /** Contents of the incoming message */
   public message: Discord.Message;
@@ -21,7 +22,7 @@ export default class Context {
   public client: Discord.Client;
 
   constructor(msg: Discord.Message, bastion: Bastion) {
-    this.user = msg.member;
+    this.member = msg.member;
     this.message = msg;
     this.channel = msg.channel as Discord.TextChannel;
     this.props = new Dictionary()
@@ -33,7 +34,7 @@ export default class Context {
   next = () => {}
 
   /** Send a message back to the channel that the incoming message was sent to */
-  reply = (msg: string) => {
+  reply = (msg: string|Discord.RichEmbed) => {
     return this.channel.send(msg)
   }
 }

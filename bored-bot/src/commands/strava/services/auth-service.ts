@@ -28,11 +28,12 @@ export async function getConnectUrl(user: User) {
  * Create the URL for strava login
  * 
  * @param client_id OAuth client_id
- * @param redirect_uri Redirect URL for the strava authorization callback
  * @param state OAuth state to
  */
 
-export function getAuthorizationUrl(client_id: string, redirect_uri: string, state: string) {
+export function getAuthorizationUrl(client_id: string, state: string) {
+  const redirect_uri = config.hostname + config.basePath + '/#accept'
+
   const authParams = querystring.stringify({
     client_id, redirect_uri, state,
     response_type     : 'code',
@@ -79,5 +80,6 @@ export async function acceptToken(discordId: string, code: string) {
  * Creates a random 32 character string
  */
 
-export const generateToken = () => 
-  [...Array(32)].map(i=>(~~(Math.random()*36)).toString(36)).join('')
+export function generateToken() { 
+  return [...Array(32)].map(i=>(~~(Math.random()*36)).toString(36)).join('')
+}

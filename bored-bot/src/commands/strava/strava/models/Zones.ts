@@ -11,6 +11,7 @@ export default class Zones {
    * 
    * @param hr Heart Rate
    */
+
   getZone(hr: number) {
     for (let i = 0; i < this.zones.length; i++) {
       const zone = this.zones[i]
@@ -19,6 +20,12 @@ export default class Zones {
     return this.zones.length - 1
   }
 
+  /**
+   * Assign the heart rate to an intensity level based off zones
+   * 
+   * @param hr Heart Rate
+   */
+  
   getIntensity(hr: number) {
     const zone = this.getZone(hr)
     if (zone === 0) return Intensity.none
@@ -27,7 +34,7 @@ export default class Zones {
   }
 }
 
-enum Intensity {
+export enum Intensity {
   none = 'none',
   active = 'active',
   hard = 'hard'

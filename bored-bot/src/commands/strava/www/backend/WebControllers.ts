@@ -1,4 +1,5 @@
 import * as AuthService from '../../services/auth-service'
+import * as ProfileService from '../../services/profile-service'
 import * as StravaService from '../../services/strava-service'
 import * as express from 'express'
 
@@ -32,7 +33,9 @@ export const acceptStravaCode: express.RequestHandler = async function(req, res,
   } catch (err) {
     debug('failed to authorize: %O', err)
     res.status(401)
-      .json({ error: "Unable to authenticate Token (Token may have been expired)" })
+      .json({ 
+        error: "Unable to authenticate Token (Token may have been expired)" 
+      })
   }
 }
 
@@ -45,12 +48,9 @@ export const acceptStravaCode: express.RequestHandler = async function(req, res,
 
 export const redirectStravaAuth: express.RequestHandler = async function(req, res) {
   const auth_str = req.query.token
-  const hostname = config.hostname
-  const redirect = hostname + config.basePath + '/#accept'
 
   const url = AuthService.getAuthorizationUrl(
     config.client_id, 
-    redirect, 
     auth_str
   )
   
@@ -79,19 +79,22 @@ export const postActivity: express.RequestHandler = async function(req, res) {
   debug('fetching user and activity data')
   const user = await findUser({ stravaId: owner_id })
 
-  const [athlete, activity, username] = await Promise.all([
+  const [athlete, activity, member] = await Promise.all([
     StravaService.getProfile(user),
     StravaService.getActivityDetails(user, object_id),
     bastion.client.fetchUser(user.discordId)
-      .then( user => user.username)
   ])
 
+  const points = await ProfileService.addActivityEffort(user, activity)
+
   debug('creating embed')
-  const embed = activityEmbed(
-    username, 
-    athlete.profile, 
-    activity
-  );
+  const embed = activityEmbed({
+    activity,
+    username: member.username,
+    avatar: athlete.profile,
+    activePoints: points.active,
+    hardPoints: points.hard
+  })
 
   debug('sending to channel')
   bastion

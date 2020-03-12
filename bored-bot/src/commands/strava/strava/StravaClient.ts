@@ -1,6 +1,7 @@
 import wretch, { Wretcher } from 'wretch';
 
 import Activity from './models/Activity';
+import ActivityStream from './models/ActivityStream';
 import Athlete from './models/Athlete';
 import Debug from 'debug';
 import User from "../db/User";
@@ -43,7 +44,7 @@ export default class StravaClient {
     debug('getAthleteHRZones()')
     
     return this.api
-      .url('/athlete/zones')
+      .url('athlete/zones')
       .get()
       .json(res => new Zones(res))
   }
@@ -58,7 +59,7 @@ export default class StravaClient {
     debug('getActivity()')
     
     return this.api
-      .url(`/activities/${activityId}`)
+      .url(`activities/${activityId}`)
       .get()
       .json(res => new Activity(res))    
   } 
@@ -69,16 +70,16 @@ export default class StravaClient {
    * @param activityId
   */
  
-  getActivityHeartrate(activityId: string) {
+  getActivityStreams(activityId: string) {
     debug('getActivityHeartrate()')
     
     return this.api
-      .url(`/activities/${activityId}/streams`)
+      .url(`activities/${activityId}/streams`)
       .query({
         keys: "heartrate,time",
         key_by_type: true
       })
       .get()
-      .json() 
+      .json(json => new ActivityStream(json)) 
   }
 }

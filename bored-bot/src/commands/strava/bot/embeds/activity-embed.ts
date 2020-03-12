@@ -1,17 +1,36 @@
 import Activity from "../../strava/models/Activity"
 import {Embed} from 'bastion'
 
-export default function activityEmbed(username: string, avatar: string, activity: Activity) {
-  return new Embed()
+const runIcon = 'https://imgur.com/MBdosZu.png'
+const bikeIcon = 'https://imgur.com/GKv60ee.png'
+const hikeIcon = 'https://i.imgur.com/yngECpK.png'
+
+export default function activityEmbed(data: ActivityEmbedData) {
+  const verb = data.activity.manual ? 'logged' : 'recorded'
+  const embed = new Embed()
     .setColor("fc4c02")
-    .setAuthor(username + " posted a run", avatar)
-    .setTitle(activity.name)
-    .setDescription(activity.description)
-    // .setThumbnail(athlete.profile)
-    .addField("Distance",   activity.distance, true)
-    .addField("Time",       activity.moving_time.toTime(), true)
-    .addField("Pace",       activity.averagePace.toPace(), true)
-    .addField("Heart Rate", activity.averageHeartrate, true)
-    .addField("Points",     `\`♥\` +4.5 \`♥♥\` +6.2`,  true)
-    .setFooter('From' + activity.device_name)
+    .setAuthor(`${data.username} ${verb} a ${data.activity.type}!`, data.avatar)
+    .setThumbnail(runIcon)
+    .setTitle(data.activity.name)
+    .setDescription(data.activity.description)
+    .setFooter('From ' + data.activity.device_name)
+
+
+  embed
+    .addField("Distance",  data.activity.distance, true)
+    .addField("Time",      data.activity.moving_time.toTime(), true)
+    .addField("Pace",      data.activity.averagePace.toPace(), true)
+
+  const totalPoints = data.activePoints + data.hardPoints
+  embed.addField('Points', '+' + totalPoints + ' `♥ +' + data.activePoints + '` `♥♥ +' + data.hardPoints + '`')
+
+  return embed;
+}
+
+interface ActivityEmbedData {
+  username: string;
+  avatar: string;
+  activity: Activity;
+  activePoints: number;
+  hardPoints: number;
 }
