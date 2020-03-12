@@ -2,8 +2,7 @@ import * as AuthService from '../../services/auth-service'
 import * as StravaService from '../../services/strava-service'
 import * as express from 'express'
 
-import Bastion, {Embed} from 'bastion'
-
+import Bastion from 'bastion'
 import Debug from 'debug'
 import activityEmbed from '../../bot/embeds/activity-embed'
 import config from '../../config'
@@ -39,6 +38,9 @@ export const acceptStravaCode: express.RequestHandler = async function(req, res,
 
 /**
  * Redirects to strava's OAuth authorization page
+ * 
+ * GET /auth
+ * @query `token` a {username}.{authToken} combo to validate discord user
  */
 
 export const redirectStravaAuth: express.RequestHandler = async function(req, res) {
@@ -56,8 +58,13 @@ export const redirectStravaAuth: express.RequestHandler = async function(req, re
 }
 
 /**
- * Gets called when a user authed with the app posts a new activity.
+ * Gets called from Strava when a user authed with the app posts a new activity.
  * This controller will post an embed to the proper discord channel
+ * 
+ * POST /webhook
+ * @body `owner_id` Strava ID 
+ * @body `object_id` ID of the activity
+ * @body `aspect_type` the kind of event that was fired
  */
 
 export const postActivity: express.RequestHandler = async function(req, res) {
@@ -69,18 +76,19 @@ export const postActivity: express.RequestHandler = async function(req, res) {
   // We only care for new events
   if (aspect_type !== "create") return;
 
-  debug('fetching data')
+  debug('fetching user and activity data')
   const user = await findUser({ stravaId: owner_id })
-  debug('user? %O', user.json())
-  const [athlete, activity, discordUser] = await Promise.all([
+
+  const [athlete, activity, username] = await Promise.all([
     StravaService.getProfile(user),
     StravaService.getActivityDetails(user, object_id),
     bastion.client.fetchUser(user.discordId)
+      .then( user => user.username)
   ])
 
   debug('creating embed')
   const embed = activityEmbed(
-    discordUser.username, 
+    username, 
     athlete.profile, 
     activity
   );
@@ -90,12 +98,13 @@ export const postActivity: express.RequestHandler = async function(req, res) {
     .channel(config.postActivityChannel)
     .send(embed)
   
-  debug('👍')
   res.send('👍')
 }
 
 /**
  * Used for registering a webhook with strava. They send a GET request to validate it
+ * 
+ * GET /webhook
  */
 
 export const acceptWebhook: express.RequestHandler = async function(req, res) {

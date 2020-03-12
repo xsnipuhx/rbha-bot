@@ -76,7 +76,7 @@ export default class User {
    * @param query 
    */
 
-  public static async findById(query: {discordId?: string, stravaId?: string}): Promise<User> {
+  public static async find(query: {discordId?: string, stravaId?: string}): Promise<User> {
     debug(`Finding user with id %O`, query);
     
     return getCollection()

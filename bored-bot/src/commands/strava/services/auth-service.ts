@@ -24,7 +24,6 @@ export async function getConnectUrl(user: User) {
   return `${urlRoot()}/auth?${tokenParams}`
 }
 
-
 /**
  * Create the URL for strava login
  * 
@@ -52,7 +51,7 @@ export function getAuthorizationUrl(client_id: string, redirect_uri: string, sta
  */
 
 export async function authenticate(discordId: string, authToken: string) {
-  const user = await User.findById({discordId}) 
+  const user = await User.find({discordId}) 
 
   return (user.authToken === authToken)
 }
@@ -65,17 +64,16 @@ export async function authenticate(discordId: string, authToken: string) {
  */
 
 export async function acceptToken(discordId: string, code: string) {
-  const [user, result] = await Promise.all([
-    User.findById({discordId}),
+  const [user, response] = await Promise.all([
+    User.find({discordId}),
     fetchAccessToken(code)
   ])
 
-  user.refreshToken = result.refresh_token;
-  user.stravaId = result.athlete.id;
+  user.refreshToken = response.refresh_token;
+  user.stravaId = response.athlete.id;
   
   return user.save()
 }
-
 
 /**
  * Creates a random 32 character string

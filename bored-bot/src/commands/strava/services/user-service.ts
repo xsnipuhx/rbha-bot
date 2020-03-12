@@ -13,7 +13,7 @@ const debug = Debug('strava:user-service')
 export async function findOrCreateUser(discordId: string) {
   debug(`find or create new user`)
   try {
-    return User.findById({discordId})
+    return User.find({discordId})
   } catch (e) {
     return User.create(discordId)
   }
@@ -21,5 +21,5 @@ export async function findOrCreateUser(discordId: string) {
 
 export async function findUser(query: { stravaId?: string, discordId?: string }) {
   debug(`find user %O`, query)
-  return User.findById(query)
+  return User.find(query)
 }
