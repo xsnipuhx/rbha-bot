@@ -31,5 +31,3 @@ bastion.use(Boombot(bastion, {
 }))
 
 bastion.connect()
-
-setInterval(() => fetch('https://rmnbha.herokuapp.com/create-meetup"), 20 * 60 * 1000)
