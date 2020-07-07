@@ -55,11 +55,11 @@ export default function({
     // Create a moment instance
     let date_moment = new moment(parsed_date.date())
     // String for display in meetups/discord
-    let date_str = date_moment.clone().tz("America/Los_Angeles").format("dddd M/D @ h:mma")
+    let date_str = date_moment.clone().tz("America/Chicago").format("dddd M/D @ h:mma")
     // Formatted but just the date
-    let date_date = date_moment.clone().tz("America/Los_Angeles").format("dddd M/D")
+    let date_date = date_moment.clone().tz("America/Chicago").format("dddd M/D")
     // Time
-    let date_time = date_moment.clone().tz("America/Los_Angeles").format("h:mma")
+    let date_time = date_moment.clone().tz("America/Chicago").format("h:mma")
 
     console.log("   - MOMENT: ", date_moment)
 
@@ -71,9 +71,9 @@ export default function({
         let parsed_date = getParsedDate(date)
         date_moment = new moment(parsed_date.date())
 
-        date_str = date_moment.clone().tz("America/Los_Angeles").format("dddd M/D @ h:mma")
-        date_date = date_moment.clone().tz("America/Los_Angeles").format("dddd M/D")
-        date_time = date_moment.clone().tz("America/Los_Angeles").format("h:mma")
+        date_str = date_moment.clone().tz("America/Chicago").format("dddd M/D @ h:mma")
+        date_date = date_moment.clone().tz("America/Chicago").format("dddd M/D")
+        date_time = date_moment.clone().tz("America/Chicago").format("h:mma")
     }
 
     this.updateInfo = function() {
@@ -107,7 +107,7 @@ export default function({
             return "Missing date or name"
         }
 
-        let refDate = new moment().tz("America/Los_Angeles")
+        let refDate = new moment().tz("America/Chicago")
         let pd = chrono.parse(opt.date, refDate)[0].start
         pd.assign('timezoneOffset', -420)
         const m = new moment(pd.date())      

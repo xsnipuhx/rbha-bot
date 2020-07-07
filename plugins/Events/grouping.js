@@ -12,7 +12,7 @@ export default {
 
         // Assign each event a group
         return events.map( event => {
-            const d = event.date_moment().clone().tz("America/Los_Angeles")
+            const d = event.date_moment().clone().tz("America/Chicago")
             let group = ""
 
             if (utils.isToday(d)) {
