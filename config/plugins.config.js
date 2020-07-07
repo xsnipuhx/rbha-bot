@@ -33,8 +33,10 @@ import covid19 from '../plugins/covid19'
 import db from '../plugins/db'
 
 const subscriptions = {
-//    "jackbox": "706723822228733972",
-    "hiking": "730072823510335498"
+    "jackbox": "730078029534986291",
+    "hiking": "730072823510335498",
+    "boardgames": "730094981775097887",
+    "biking": "730126959522349066"
 }
 
 export default bastion => ([ 
@@ -84,12 +86,12 @@ export default bastion => ([
         restrict: ["shitpost", "430517752546197509"]
     }),
     AutoTag(bastion, {
-        restrict: ["416708557984104448"]
+        restrict: ["639613048012800011"]
     }),
     Upvotes,
     Dungeon,
     Reddit(bastion, {
-        channel: "506911331257942027"
+        channel: "shitpost"
     }),
     DuckHunt(bastion, {
         listRestrict: ["shitpost", "430517752546197509"]
@@ -109,6 +111,8 @@ export default bastion => ([
     // Fools(bastion, {
     //     listRestrict: ["shitpost", "430517752546197509"]
     // })
-    covid19,
+    covid19(bastion, {
+        restrict: ["shitpost"]
+    }),
     Dice
 ])
