@@ -34,7 +34,7 @@ import db from '../plugins/db'
 
 const subscriptions = {
 //    "jackbox": "706723822228733972",
-//    "league": "706723711373279262"
+    "hiking": "730072823510335498"
 }
 
 export default bastion => ([ 
