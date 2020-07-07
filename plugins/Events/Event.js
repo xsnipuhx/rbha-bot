@@ -10,8 +10,10 @@ const States = {
     CANCELLED: 2
 }
 
-const PDT_OFFSET = -420
-const PST_OFFSET = -480
+// Updated for Central Time for Rochester Bored Humans
+// I'm not going to change the variable name
+const PDT_OFFSET = -300
+const PST_OFFSET = -360
 
 const isDaylightSavings = (date) => {
     const dsStart = new Date(date.getFullYear(), 2, 10)
