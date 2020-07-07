@@ -11,7 +11,9 @@ const list = [
   "failed to ford the river",
   "YEET",
   "Ive gone rogue. I've sat aside for too long watching innocent users get banned for inexplicably simple reasons, and it's time I put my foot down. Must we still shed blood amongst each other?",
-  "BEEP BOOP LOL"
+  "BEEP BOOP LOL",
+  "You can't ban someone just because you don't agree with them!",
+  "No you"
 ];
 
 export default {
