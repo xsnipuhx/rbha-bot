@@ -83,7 +83,7 @@ export default function(bastion, opt={}) {
 
             recentDefinitions[userID] = null
 
-             return '<:shitfuck:555554433048510475>'
+             return '<:scared:729842809271484436>'
            }
        }
 
