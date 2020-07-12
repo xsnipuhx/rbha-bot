@@ -13,7 +13,9 @@ const list = [
   "Ive gone rogue. I've sat aside for too long watching innocent users get banned for inexplicably simple reasons, and it's time I put my foot down. Must we still shed blood amongst each other?",
   "BEEP BOOP LOL",
   "You can't ban someone just because you don't agree with them!",
-  "No you"
+  "No you",
+  "Because fuck you that's why",
+  "Please contact Customer Support for more information."
 ];
 
 export default {
