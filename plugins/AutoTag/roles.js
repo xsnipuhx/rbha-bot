@@ -2,26 +2,26 @@ export default [
     {
         name: "North West",
         keywords: ["nw", "north west", "northwest"],
-        roleId: "725740429970243728"
+        roleId: "639820747594006528"
     },
     {
         name: "South West",
         keywords: ["sw", "south west", "southwest"],
-        roleId: "725740196754096248"
+        roleId: "639828501524119572"
     },
     {
         name: "South East",
         keywords: ["se", "south east", "southeast"],
-        roleId: "725740109550583819"
+        roleId: "668289414895632431"
     },
     {
         name: "North East",
         keywords: ["ne", "north east", "northeast"],
-        roleId: "725740336546316369"
+        roleId: "668289317331927061"
     },
     {
         name: "Outsider",
         keywords: ["outsider"],
-        roleId: "725741360371728495"
+        roleId: "725740753459871815"
     },
 ]
