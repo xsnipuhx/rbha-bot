@@ -157,3 +157,6 @@ And above your export function, set the type as PluginResolver
 /** @type {PluginResolver} */
 export default function(bastion, opt={}) {
 ```
+
+# Just updating the readme to see if this brings the bot back
+09/12/2021
