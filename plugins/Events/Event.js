@@ -36,12 +36,13 @@ const getParsedDate = (dateString) => {
     console.log("parsed date?", offset)
     parsed_date.assign('timezoneOffset', offset)
 
-    return parsed_date
+    return parsed_date.date()
 }
 
 export default function({ 
     id = GUID(), 
     date, 
+    timestamp = null,
     info, 
     options={},
     userID, 
@@ -51,11 +52,10 @@ export default function({
     info_id = null,
     rsvp_id = null
 }, config) {
-    // Parse the incoming date string to an ISO string
-    let parsed_date = getParsedDate(date)
+    const d = timestamp ? new Date(timestamp) : getParsedDate(date)
 
     // Create a moment instance
-    let date_moment = new moment(parsed_date.date())
+    let date_moment = new moment(d)
     // String for display in meetups/discord
     let date_str = date_moment.clone().tz("America/Chicago").format("dddd M/D @ h:mma")
     // Formatted but just the date
@@ -63,15 +63,21 @@ export default function({
     // Time
     let date_time = date_moment.clone().tz("America/Chicago").format("h:mma")
 
-    console.log("   - MOMENT: ", date_moment)
-
     let meetup_info = `${info} | ${date_str}`
 
     let reactions = { yes: [], maybe: [] }
 
-    this.parseDate = function() {
-        let parsed_date = getParsedDate(date)
-        date_moment = new moment(parsed_date.date())
+    this.parseDate = function(newDate) {
+        let d;
+
+        if (newDate) {
+            d = getParsedDate (newDate);
+        }
+        else {
+            d = timestamp ? new Date(timestamp) : getParsedDate(date)
+        }
+
+        date_moment = new moment(d)
 
         date_str = date_moment.clone().tz("America/Chicago").format("dddd M/D @ h:mma")
         date_date = date_moment.clone().tz("America/Chicago").format("dddd M/D")
@@ -339,10 +345,11 @@ export default function({
     }
 
     this.update = function(new_options) {
+        this.parseDate (new_options.date);
+        
         date = new_options.date;
         info = new_options.name;
         options = new_options;
-        this.parseDate();
         this.updateInfo();
     }
 

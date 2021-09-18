@@ -35,15 +35,36 @@ export default function(bastion, opt={}) {
             resolve: async function(context, symbol, optStyle) {
                 const style = optStyle === "line" ? "l" : "c"
 
-                const options = {
+                let options = {
                     url: `https://finviz.com/chart.ashx?t=${symbol}&ty=${style}&ta=0&p=d&s=l`,
                     dest: `${__dirname}/chart.png`
+                }
+
+                if (symbol.startsWith('/')) {
+                    symbol = symbol.substr(1)
+
+                    options = {
+                        url: `https://elite.finviz.com/fut_chart.ashx?t=${symbol}&p=m5&f=1`, 
+                        dest: `${__dirname}/chart.png`
+                    }
+                }
+                
+                if (symbol.startsWith('*')) {
+                    symbol = symbol.substr(1)
+                    
+                    options = {
+                        url: `https://finviz.com/fx_image.ashx?${symbol}USD_m1_l.png`,
+                        dest: `${__dirname}/chart.png`
+                    }
                 }
 
                 bastion.bot.simulateTyping(context.channelID)
 
                 try {
-                    await download.image(options)
+                    const file = await download.image(options)
+                    
+                    if (file.image.length === 0) return `Could not find "${symbol}"`
+
                     bastion.bot.uploadFile({
                         to: context.channelID,
                         file: options.dest

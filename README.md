@@ -1,22 +1,24 @@
 # Bot for SJBHA
 
+> :warning: This version of bored bot is legacy and deprecated. This branch is here for backwards support until all the commands are migrated to the master branch
+
 ## Setup
 
 Setup is simple, make sure you have npm installed. Just clone the repo and install dependencies
 
 ```bash
 git clone https://repo.git
-cd sjbot
+cd sjbha-bot
 npm install
 ```
 
 In order to run the bot, you will need to create a `.env` file in the root directory, and then run
 
 ```bash
-npm run dev --symbol=@
+npm run dev
 ```
 
-note: (--symbol=@) means to run commands via `@help` instead of `!help`. If it is not set, it will default to `_` in dev mode
+note: run commands via `_help` instead of `!help`. Change the symbol by adding the '--symbol=' switch after 'npm run dev'
 
 Hit up @s3b if you want access to the dev server. Will provide you a .env file with the dev keys
 
