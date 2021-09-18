@@ -11,11 +11,18 @@ const baseConfig = {
     mongoUrl: ""
 }
 
+let isConnected = false;
+
 export default function(bastion, opt={}) {
     const config = deepmerge(baseConfig, opt)
 
-    bastion.on('ready', () => db.connect(config))
-    bastion.extend("Queries", Queries)
+    bastion.on('ready', () => {
+        if (!isConnected) {
+            db.connect(config)
+            isConnected = true;
+        }
+    });
+    bastion.extend("Queries", Queries);
 
     return []
 }
