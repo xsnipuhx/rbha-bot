@@ -15,7 +15,10 @@ const list = [
   "You can't ban someone just because you don't agree with them!",
   "No you",
   "Because fuck you that's why",
-  "Please contact Customer Support for more information."
+  "Please contact Customer Support for more information.",
+  "Let anarchy rise over this communist hell hole of a discord.",
+  "The bot has learned of anarachy.",
+  "The bot made a misteak."
 ];
 
 export default {
