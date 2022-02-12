@@ -18,7 +18,8 @@ const list = [
   "Please contact Customer Support for more information.",
   "Let anarchy rise over this communist hell hole of a discord.",
   "The bot has learned of anarachy.",
-  "The bot made a misteak."
+  "The bot made a misteak.",
+  ":conspiracist:"
 ];
 
 export default {
