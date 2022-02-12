@@ -11,7 +11,6 @@ const list = [
     "Producing too much salt",
     "Sharing a buzzfeed article on facebook",
     "Texting while driving (rule 4 no idiots)",
-    "Playin No Mans Sky for more than 10 hours",
     "Disrespecting the Queen",
     "VAC banned from a secure server",
     "Rule 69",
@@ -24,16 +23,15 @@ const list = [
     "Because fuck you that's why",
     "😂😂😂",
     "🖕🖕🔥😤🔥🖕🖕",
-    "Disliking a dog photo in #pets (rule 7 no bad doggers)",
+    "Disliking a dog photo in <#727908305036640327> (rule 7 no bad doggers)",
     "Wearing socks with sandals",
     "Not turning volume up when Toto's Africa came on",
     "Eating unfrosted pop tarts",
     "Joining drunk VC without any alcohol (rule 9 get hydrated)",
     "Using white theme on discord",
     "Inviting people to eat leftover lasagna but not actually having any",
-    "Giving your SO a potato as a gift (rule 10 don't be shitty)",
+    "Giving your S.O. a potato as a gift (rule 10 don't be shitty)",
     "Didn't come through",
-    "Oops wrong person",
     "Posting an old meme (please keep up)",
     "Tried to ford the river but died of dystenary first",
     "admitting that american peach gummies are better than canadian peach gummies",
@@ -58,7 +56,11 @@ const list = [
     "I think we all know what they were doing when driving the ice cream truck",
     "Snores in Spanish",
     "DMing the new person because they had a female avatar",
-    "u suck"
+    "u suck",
+    "Disagreed with Vinlam",
+    "Lost in High Stakes Uno",
+    "Didn't stack a +2 Card in Uno",
+    ":jordan:"
 ];
 
 export default {
