@@ -32,14 +32,14 @@ import Yelling from '../plugins/yelling'
 import covid19 from '../plugins/covid19'
 import db from '../plugins/db'
 
-const subscriptions = {
-    "jackbox": "730078029534986291",
-    "hiking": "730072823510335498",
-    "boardgames": "730094981775097887",
-    "biking": "730126959522349066",
-    "tabletop": "730201703239909478",
-    "discgolf": "730201782218915841"
-}
+// const subscriptions = {
+//     "jackbox": "730078029534986291",
+//     "hiking": "730072823510335498",
+//     "boardgames": "730094981775097887",
+//     "biking": "730126959522349066",
+//     "tabletop": "730201703239909478",
+//     "discgolf": "730201782218915841"
+// }
 
 export default bastion => ([ 
     db(bastion, {
