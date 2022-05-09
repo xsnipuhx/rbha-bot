@@ -21,7 +21,10 @@ export default function(bastion, config={}) {
                 this.send(channelID, msg.join(" "))
             }
         },
-
+        {
+            command: "v",
+            resolve: "Code last updated: 05/08/22"
+        },
         {
             command: "git",
             resolve: "Github: https://github.com/qCzar/rbha-bot"
