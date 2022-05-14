@@ -63,7 +63,7 @@ export default bastion => ([
     StockChart(bastion, {
         restrict: ["stocks"]
     }),
-    Subscribe(bastion, { subscriptions }),
+//    Subscribe(bastion, { subscriptions }),
 //    Strava(bastion, {
 //        restrict: ["strava", "430517752546197509"]
 //    }),
