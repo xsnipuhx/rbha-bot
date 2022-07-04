@@ -34,8 +34,6 @@ Traditional|Left Handed|Fancy
 |   ---€   |    ---£   |   ---₤   |
 -----------------------------------```
 
-#**HAPPY LYNCHING!**
-
 (some assembly required)
 
 
