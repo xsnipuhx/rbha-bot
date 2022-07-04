@@ -7,8 +7,41 @@ export default function(bastion, config={}) {
     return [
 
         {
-            command: "mocha",
-            resolve: "\:coffee:\:coffee: TIME FOR A MOCHA BREAK \:no_entry_sign:\:sleeping:"
+            command: "pitchforks",
+            resolve: "**ANGRY AT OP?** WANT TO JOIN THE MOB? *WE'VE GOT YOU COVERED!
+
+COME ON DOWN TO /r/pitchforkemporium
+
+
+**WE GOT 'EM ALL!**
+
+Traditional|Left Handed|Fancy
+```_____________________________________
+| Traditional | Left Handed | Fancy |
+|    ---E     |      Ǝ---   |  ---{ |
+-------------------------------------```
+**WE EVEN HAVE DISCOUNTED CLEARANCE FORKS!**
+
+```____________________________________________________
+| 33% Off | 66% Percent Off | Manufactures Defect! |
+|   ---F  |       ---L      |         ---e         |
+----------------------------------------------------```
+
+**NEW IN STOCK. DIRECTLY FROM LIECHTENSTEIN.** ***EUROPEAN MODELS!***
+
+```___________________________________
+| The Euro | The Pound | The Lira |
+|   ---€   |    ---£   |   ---₤   |
+-----------------------------------```
+
+#**HAPPY LYNCHING!**
+
+(some assembly required)
+
+
+Edit: holy *sheet* my **FIRST GOLD** . Thank you kind stranger. I love you. Here is a custom pitchfork for you:
+
+**─=≡Σᕕ( ͡° ͜ʖ ͡°)ᕗ**"
         },
 
         {
@@ -23,7 +56,7 @@ export default function(bastion, config={}) {
         },
         {
             command: "v",
-            resolve: "Code last updated: 05/08/22"
+            resolve: "Code last updated: 07/04/22"
         },
         {
             command: "git",
