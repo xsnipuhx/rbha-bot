@@ -8,9 +8,8 @@ export default function(bastion, config={}) {
 
         {
             command: "pitchforks",
-            resolve: "**ANGRY AT OP?** WANT TO JOIN THE MOB? *WE'VE GOT YOU COVERED!* COME ON DOWN TO /r/pitchforkemporium"
+            resolve: "ANGRY AT OP? WANT TO JOIN THE MOB? WE'VE GOT YOU COVERED! COME ON DOWN TO /r/pitchforkemporium"
         },
-
         {
             command: "echo",
             restrict: ["admin"],
