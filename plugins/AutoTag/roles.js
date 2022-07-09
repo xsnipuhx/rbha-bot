@@ -1,27 +1,27 @@
 export default [
     {
         name: "North West",
-        keywords: ["nw", "north west", "northwest"],
+        keywords: ["north west", "northwest"],
         roleId: "639820747594006528"
     },
     {
         name: "South West",
-        keywords: ["sw", "south west", "southwest"],
+        keywords: ["south west", "southwest"],
         roleId: "639828501524119572"
     },
     {
         name: "South East",
-        keywords: ["se", "south east", "southeast"],
+        keywords: ["south east", "southeast"],
         roleId: "668289414895632431"
     },
     {
         name: "North East",
-        keywords: ["ne", "north east", "northeast"],
+        keywords: ["north east", "northeast"],
         roleId: "668289317331927061"
     },
     {
-        name: "Outsider",
-        keywords: ["outsider"],
+        name: "non-local",
+        keywords: ["non-local"],
         roleId: "725740753459871815"
     },
     {
@@ -56,7 +56,7 @@ export default [
     },
     {
         name: "Twin Cities",
-        keywords: ["twin cities", "metro area", "Saint Paul", "St. Paul", "st Paul", "Minneapolis", "msp", "maple grove", "Bloomington", "Woodbury", "lakeville", "Shakopee", "eagan", "burnsville", "Blaine", "stillwater", "forest lake", "Eden Prairie", "Plymouth", "white bear lake", "Minnetonka", "inver", "apple valley"],
+        keywords: ["twin cities", "metro area", "Saint Paul", "St. Paul", "st Paul", "Minneapolis", "maple grove", "Bloomington", "Woodbury", "lakeville", "Shakopee", "eagan", "burnsville", "Blaine", "stillwater", "forest lake", "Eden Prairie", "Plymouth", "white bear lake", "Minnetonka", "inver", "apple valley"],
         roleId: "948356824808181851"
     },
     {
