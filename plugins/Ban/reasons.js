@@ -58,7 +58,10 @@ const list = [
     "Disagreed with Vinlam",
     "Lost in High Stakes Uno",
     "Didn't stack a +2 Card in Uno",
-    ":jordan:"
+    ":jordan:",
+    "Kicked a goose",
+    "Gave Comic's cat bad vibes",
+    "Won't shut up about pineapple on pizza"
 ];
 
 export default {
