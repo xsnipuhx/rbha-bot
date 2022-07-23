@@ -21,7 +21,7 @@ export default [
     },
     {
         name: "non-local",
-        keywords: ["non-local"],
+        keywords: ["non-local", "outsider"],
         roleId: "725740753459871815"
     },
     {
@@ -33,6 +33,11 @@ export default [
         name: "Kasson",
         keywords: ["kasson"],
         roleId: "948357008006996019"
+    },
+    {
+        name: "Owatonna",
+        keywords: ["owatonna"],
+        roleId: "1000260427311218748"
     },
     {
         name: "Mankato",
