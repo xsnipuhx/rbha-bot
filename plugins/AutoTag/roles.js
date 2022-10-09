@@ -86,7 +86,12 @@ export default [
     },
     {
         name: "Wisconsin",
-        keywords: ["Wisconsin", "holmen", "Onalaska", "la crosse", "Fountain City", "Trempealeau", "Alma", "Hudson"],
+        keywords: ["Wisconsin", "holmen", "Onalaska", "la crosse", "Fountain City", "Trempealeau", "Alma", "Hudson", "eau claire"],
         roleId: "950032868153888819"
     },
+     {
+        name: "Iowa",
+        keywords: ["Iowa"],
+        roleId: "941903968488005664"
+    }
 ]
