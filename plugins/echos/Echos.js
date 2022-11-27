@@ -22,7 +22,7 @@ export default function(bastion, config={}) {
         },
         {
             command: "v",
-            resolve: "Code last updated: 010/09/22"
+            resolve: "Code last updated: 11/27/22"
         },
         {
             command: "git",
@@ -36,7 +36,7 @@ export default function(bastion, config={}) {
 
         {
             command: "bug",
-            resolve: "Submit the bug here so I can keep track of them: https://github.com/hellos3b/sjbha-bot/issues/new"
+            resolve: "Submit the bug here so I can keep track of them: https://github.com/qCzar/rbha-bot/issues/new"
         }
 
         // {
