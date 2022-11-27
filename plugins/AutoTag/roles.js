@@ -1,22 +1,22 @@
 export default [
     {
         name: "North West",
-        keywords: ["north west", "northwest"],
+        keywords: ["north west", "northwest", "nw roch"],
         roleId: "639820747594006528"
     },
     {
         name: "South West",
-        keywords: ["south west", "southwest"],
+        keywords: ["south west", "southwest", "sw roch"],
         roleId: "639828501524119572"
     },
     {
         name: "South East",
-        keywords: ["south east", "southeast"],
+        keywords: ["south east", "southeast", "se roch"],
         roleId: "668289414895632431"
     },
     {
         name: "North East",
-        keywords: ["north east", "northeast"],
+        keywords: ["north east", "northeast", "ne roch"],
         roleId: "668289317331927061"
     },
     {
@@ -56,7 +56,7 @@ export default [
     },
     {
         name: "Zumbrota",
-        keywords: ["Zumbrota"],
+        keywords: ["zumbrota"],
         roleId: "950028461576163378"
     },
     {
@@ -66,7 +66,7 @@ export default [
     },
     {
         name: "Stewartville",
-        keywords: ["Stewartville"],
+        keywords: ["stewartville"],
         roleId: "838947699809189920"
     },
     {
@@ -76,7 +76,7 @@ export default [
     },
     {
         name: "St. Charles",
-        keywords: ["st charles", "st. Charles", "Saint Charles"],
+        keywords: ["st charles", "st. charles", "saint charles"],
         roleId: "948357142698655764"
     },
     {
@@ -86,12 +86,12 @@ export default [
     },
     {
         name: "Wisconsin",
-        keywords: ["Wisconsin", "holmen", "Onalaska", "la crosse", "Fountain City", "Trempealeau", "Alma", "Hudson", "eau claire"],
+        keywords: ["wisconsin", "holmen", "onalaska", "la crosse", "fountain city", "trempealeau", "alma", "hudson", "eau claire"],
         roleId: "950032868153888819"
     },
      {
         name: "Iowa",
-        keywords: ["Iowa"],
+        keywords: ["iowa"],
         roleId: "941903968488005664"
     }
 ]
