@@ -22,7 +22,7 @@ export default function(bastion, config={}) {
         },
         {
             command: "v",
-            resolve: "Code last updated: 11/27/22"
+            resolve: "Code last updated: 02/05/23"
         },
         {
             command: "git",
