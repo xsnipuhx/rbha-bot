@@ -14,13 +14,13 @@ export default function (bastion, opt = {}) {
         },
 
         async resolve(context, msg) {
-            const mcURL = "https://mcapi.us/server/status?ip=51.161.122.136&port=25595";
+            const mcURL = "https://mcapi.us/server/status?ip=199.48.94.240&port=25595";
 
             let response = await fetch(mcURL);
             if (response.ok) {
                 let jsonResponse = await response.json();
                 if (jsonResponse.online === false) {
-                    return "The server is either offline or the bot is broken. Please dm @Devrim#1557 if the server is online."
+                    return "The server is either offline or the bot is broken. Please dm @xsnipuhx@9584 if the server is online."
                 } else {
                     return "Current Players in the Server is: " + jsonResponse.players.now;
                 }
